@@ -26,18 +26,18 @@ The pipeline consists of the following components:
 Unlike traditional monitoring where IPs are hardcoded, my Prometheus server queries the AWS API to find targets.
 As seen below, Prometheus successfully discovered the fleet, identifying the healthy node (UP) and flagging unreachable ones (demonstrating the health check capability).
 
-![Service Discovery](project-screenshots/01-prometheus-service-discovery.png)
+![Service Discovery](project-screenshots/prometheus-service-discovery.png)
 
 ### 2. Full System Visibility
 Using Grafana, I imported a full Node Exporter dashboard to visualize CPU, RAM, and Network traffic in real-time.
 
-![Grafana Dashboard](project-screenshots/02-grafana-dashboard-overview.png)
+![Grafana Dashboard](project-screenshots/grafana-dashboard-overview.png)
 
 ### 3. Stress Testing & Anomaly Detection
 To validate the alerting logic, I simulated a high-load event using the `stress` tool on the EC2 instance.
 The graph below clearly shows the CPU spike generated during the test.
 
-![CPU Spike](project-screenshots/03-cpu-spike-stress-test.png)
+![CPU Spike](project-screenshots/cpu-spike-stress-test.png)
 
 ### 4. Alerting Logic (The "Brain")
 I configured a custom alert rule based on the `node_load1` metric.
@@ -50,7 +50,7 @@ I configured a custom alert rule based on the `node_load1` metric.
 ### 5. Real-Time Notifications
 Once the firing condition was met and the pending period passed, the system automatically sent a notification to the DevOps Discord channel.
 
-![Discord Alert](project-screenshots/05-discord-alert-notification.png)
+![Discord Alert](project-screenshots/discord-alert-notification.png)
 
 ---
 
