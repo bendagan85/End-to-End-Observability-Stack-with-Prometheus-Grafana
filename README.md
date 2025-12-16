@@ -63,14 +63,15 @@ Once the firing condition was met and the pending period passed, the system auto
 
 ### Step 1: Install Node Exporter (Client)
 ```bash
-wget [https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz](https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz)
+wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
 tar xvfz node_exporter-*.*-amd64.tar.gz
 cd node_exporter-*.*-amd64
 ./node_exporter
+```
 
 ### Step 2: Configure Prometheus (Server)
-prometheus.yml configuration for AWS discovery:
-
+`prometheus.yml` configuration for AWS discovery:
+```yaml
 scrape_configs:
   - job_name: 'ec2_auto_discovery'
     ec2_sd_configs:
@@ -79,15 +80,13 @@ scrape_configs:
     relabel_configs:
       - source_labels: [__meta_ec2_tag_Name]
         target_label: instance
-
+```
 
 ### Step 3: Run the Stack
-
+```bash
 # Run Prometheus
 docker run -d -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
 
 # Run Grafana
 docker run -d -p 3000:3000 grafana/grafana
-
-
-
+```
