@@ -48,7 +48,7 @@ I configured a custom alert rule based on the `node_load1` metric.
 ![Alert Configuration](project-screenshots/04b-alert-configuration-details.png)
 
 ### 5. Real-Time Notifications
-Once the firing condition was met and the pending period passed, the system automatically sent a notification to the DevOps Discord channel.
+Once the firing condition was met and the pending period passed, the system automatically sent a notification to the general Discord channel.
 
 ![Discord Alert](project-screenshots/discord-alert-notification.png)
 
