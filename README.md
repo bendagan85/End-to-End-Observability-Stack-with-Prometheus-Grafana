@@ -26,31 +26,31 @@ The pipeline consists of the following components:
 Unlike traditional monitoring where IPs are hardcoded, my Prometheus server queries the AWS API to find targets.
 As seen below, Prometheus successfully discovered the fleet, identifying the healthy node (UP) and flagging unreachable ones (demonstrating the health check capability).
 
-![Service Discovery](assets/01-prometheus-service-discovery.png)
+![Service Discovery](project-screenshots/01-prometheus-service-discovery.png)
 
 ### 2. Full System Visibility
 Using Grafana, I imported a full Node Exporter dashboard to visualize CPU, RAM, and Network traffic in real-time.
 
-![Grafana Dashboard](assets/02-grafana-dashboard-overview.png)
+![Grafana Dashboard](project-screenshots/02-grafana-dashboard-overview.png)
 
 ### 3. Stress Testing & Anomaly Detection
 To validate the alerting logic, I simulated a high-load event using the `stress` tool on the EC2 instance.
 The graph below clearly shows the CPU spike generated during the test.
 
-![CPU Spike](assets/03-cpu-spike-stress-test.png)
+![CPU Spike](project-screenshots/03-cpu-spike-stress-test.png)
 
 ### 4. Alerting Logic (The "Brain")
 I configured a custom alert rule based on the `node_load1` metric.
 * **Threshold**: Trigger if Load > 0.5.
 * **State**: The screenshot below captures the alert in the **Firing** state during the stress test (Value: 1.93).
 
-![Alert Logic Firing](assets/04a-alert-logic-firing.png)
-![Alert Configuration](assets/04b-alert-configuration-details.png)
+![Alert Logic Firing](project-screenshots/04a-alert-logic-firing.png)
+![Alert Configuration](project-screenshots/04b-alert-configuration-details.png)
 
 ### 5. Real-Time Notifications
 Once the firing condition was met and the pending period passed, the system automatically sent a notification to the DevOps Discord channel.
 
-![Discord Alert](assets/05-discord-alert-notification.png)
+![Discord Alert](project-screenshots/05-discord-alert-notification.png)
 
 ---
 
@@ -63,7 +63,7 @@ Once the firing condition was met and the pending period passed, the system auto
 
 ### Step 1: Install Node Exporter (Client)
 ```bash
-wget https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz
+wget [https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz](https://github.com/prometheus/node_exporter/releases/download/v1.5.0/node_exporter-1.5.0.linux-amd64.tar.gz)
 tar xvfz node_exporter-*.*-amd64.tar.gz
 cd node_exporter-*.*-amd64
 ./node_exporter
